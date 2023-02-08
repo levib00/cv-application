@@ -6,18 +6,19 @@ class NameSection extends React.Component {
   }
   
   render() {
+    const { name, location, email, phoneNumber } = this.props.info
     return (
       <header>
-        <h2>Your Name</h2>
+        <h2>{name}</h2>
         <div>
           <div>
-            location: A place
+            Location: {location}
           </div>
           <div>
-            email: your@email.com
+            Email: {email}
           </div>
           <div>
-            Phone number: (123) 456-7890
+            Phone number: {phoneNumber}
           </div>
         </div>    
       </header>

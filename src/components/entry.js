@@ -6,12 +6,13 @@ class Entry extends React.Component {
   }
   
   render() {
+    const { role, company, responsibilities } = this.props.info
     return (
       <div>
         <div>
-          Placeholder
+          {role} - {company}
         </div>
-        <p>include some text about your responsibilities in your role.</p>
+        <p>{responsibilities}</p>
       </div>
     )
   }

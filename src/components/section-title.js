@@ -8,7 +8,7 @@ class SectionHeader extends React.Component {
   render() {
     return (
       <div>
-        <h3>Section Name</h3>
+        <h3>{this.props.title}</h3>
       </div>
     )
   }
