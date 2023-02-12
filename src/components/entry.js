@@ -1,14 +1,10 @@
 import React from 'react';
 
 class Entry extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  
   render() {
     const { role, company, responsibilities } = this.props.info
     return (
-      <div>
+      <div key={this.props.listKey}>
         <div>
           {role} - {company}
         </div>
@@ -16,7 +12,6 @@ class Entry extends React.Component {
       </div>
     )
   }
-
 }
 
 export default Entry;
