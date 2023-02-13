@@ -26,24 +26,53 @@ class Page extends React.Component {
         email: 'an@email.here',
         phoneNumber: '(098) 765-4321'
       },
+      clicked: false,
     }
     this.setArray = this.setArray.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.removeEditComponent = this.removeEditComponent.bind(this);
+  }
+
+  removeEditComponent(historyArray, newObject) { // TODO: rename historyArray
+    if (historyArray === 'eduArray') {
+      const array = [...this.state.eduArray]; // make a separate copy of the array
+      const index = array.findIndex(item => React.isValidElement(item))
+      if (index !== -1) {
+        array.splice(index, 1);
+        return [...array, newObject];
+      }
+    } else if (historyArray === 'expArray') {
+      const array = [...this.state.expArray]; // make a separate copy of the array
+      const index = array.findIndex(item => React.isValidElement(item))
+      if (index !== -1) {
+        array.splice(index, 1);
+        return [...array, newObject];
+      }
+    }
   }
 
   setArray(historyArray, newObject) {
-    console.log(historyArray === this.state.eduArray)
-    
-    if (historyArray === this.state.eduArray) {
-      this.setState({
-      eduArray: [...historyArray, newObject],
-      })
-    } else {
-      this.setState({
-      expArray: [...historyArray, newObject],
-      })
-      console.log(this.state.expArray)
+    this.setState({clicked: false})
+    if (historyArray === 'eduArray') {
+      this.setState({eduArray: this.removeEditComponent(historyArray, newObject)})
+    } else if (historyArray === 'expArray') {
+      this.setState({expArray: this.removeEditComponent(historyArray, newObject)})
     }
- 
+  }
+  
+  addItem(historyArray) {
+    if (!this.state.clicked) {
+      if (historyArray === this.state.eduArray) {
+      this.setState({
+        eduArray: [...historyArray, <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduAdd'}/>]
+      })
+      } else {
+        this.setState({
+          expArray: [...historyArray, <EditEntry historyArray={'expArray'} setArray={this.setArray} key={'expAdd'}/>]
+        })
+      }
+      this.setState({clicked: true})
+    }
   }
   
   render() {
@@ -51,19 +80,16 @@ class Page extends React.Component {
       <div>
         <NameSection nameInfo={this.state.personalInfo}/>
         <div>
-          <SectionHeader title='Experience'/>
+          <SectionHeader title='Experience' addItem={this.addItem} historyArray={this.state.expArray}/>
           <ListItems item={this.state.expArray}/>
-          <EditEntry historyArray={this.state.expArray} setArray={this.setArray}/>
         </div>
         <div>
-          <SectionHeader title='Education'/>
+          <SectionHeader title='Education' addItem={this.addItem} historyArray={this.state.eduArray}/>
           <ListItems item={this.state.eduArray}/>
-          <EditEntry historyArray={this.state.eduArray} setArray={this.setArray}/>
         </div>
       </div>
     )
   }
-
 }
 
 export default Page;
