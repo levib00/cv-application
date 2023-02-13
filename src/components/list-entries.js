@@ -4,9 +4,19 @@ import { v4 as uuidv4 } from 'uuid';
 
 class ListEntries extends React.Component {
   makeToListItems() {
+    let placed = false
     const item = this.props.item
-    const list = item.map(listItem => <Entry key={uuidv4()} info={listItem}/>)
-    console.log(list)
+    const list = item.map(listItem => {
+    console.log(listItem)
+    if (React.isValidElement(listItem) && placed) {
+      return null
+    }
+    else if (React.isValidElement(listItem) && !placed) {
+      placed = true
+      return listItem
+    }
+    return <Entry key={uuidv4()} info={listItem}/>
+  })
     return list
   }
   
