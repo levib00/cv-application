@@ -1,15 +1,12 @@
 import React from 'react';
 
 class NameSection extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  
   render() {
-    const { name, location, email, phoneNumber } = this.props.info
+    const { name, location, email, phoneNumber } = this.props.nameInfo
     return (
-      <header>
+      <div>
         <h2>{name}</h2>
+        <button>Edit</button>
         <div>
           <div>
             Location: {location}
@@ -21,7 +18,7 @@ class NameSection extends React.Component {
             Phone number: {phoneNumber}
           </div>
         </div>    
-      </header>
+      </div>
     )
   }
 
