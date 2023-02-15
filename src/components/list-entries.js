@@ -7,7 +7,7 @@ class ListEntries extends React.Component {
     let placed = false
     const item = this.props.item
     const list = item.map(listItem => {
-    console.log(listItem)
+    
     if (React.isValidElement(listItem) && placed) {
       return null
     }
@@ -15,7 +15,7 @@ class ListEntries extends React.Component {
       placed = true
       return listItem
     }
-    return <Entry key={uuidv4()} info={listItem}/>
+    return <Entry key={uuidv4()} info={listItem} edit={this.props.edit} remove={this.props.remove}/>
   })
     return list
   }
