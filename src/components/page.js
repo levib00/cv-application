@@ -9,7 +9,7 @@ class Page extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      eduArray: [],
+      eduArray: [], //TODO: sort edu by date -> make allowance for 'present' to be current date.
       expArray: [],
       values: {
           type: 'school',
@@ -31,6 +31,29 @@ class Page extends React.Component {
     this.setArray = this.setArray.bind(this);
     this.addItem = this.addItem.bind(this);
     this.removeEditComponent = this.removeEditComponent.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.getIndex = this.getIndex.bind(this);
+  }
+
+  getIndex(e) {
+    let test = e.target.parentNode
+    let nodeList = Array.from(e.target.parentNode.parentNode.children)
+    console.log(e.target.parentNode.parentNode)
+    let filteredNode = nodeList.filter(node => node === test)
+    return nodeList.indexOf(filteredNode[0])
+  }
+
+  handleEdit(e) {
+    let array = this.state.eduArray
+    array[this.getIndex(e)] = <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
+    this.setState({eduArray: [...array]}) //TODO: allow these to work with exp array too.
+  }
+
+  handleRemove(e) {
+    let array = this.state.eduArray
+    array.splice(this.getIndex(e), 1)
+    this.setState({eduArray: [...array]})
   }
 
   removeEditComponent(historyArray, newObject) { // TODO: rename historyArray
@@ -81,11 +104,11 @@ class Page extends React.Component {
         <NameSection nameInfo={this.state.personalInfo}/>
         <div>
           <SectionHeader title='Experience' addItem={this.addItem} historyArray={this.state.expArray}/>
-          <ListItems item={this.state.expArray}/>
+          <ListItems item={this.state.expArray} edit={this.handleEdit} remove={this.handleRemove}/>
         </div>
         <div>
           <SectionHeader title='Education' addItem={this.addItem} historyArray={this.state.eduArray}/>
-          <ListItems item={this.state.eduArray}/>
+          <ListItems item={this.state.eduArray} edit={this.handleEdit} remove={this.handleRemove}/>
         </div>
       </div>
     )
