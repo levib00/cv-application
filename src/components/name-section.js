@@ -1,27 +1,24 @@
 import React from 'react';
 
 class NameSection extends React.Component {
-  render() {
-    const { name, location, email, phoneNumber } = this.props.nameInfo
-    return (
+render() {
+  return (
+    <div>
+      <h2>{this.props.nameInfo.name}</h2>
       <div>
-        <h2>{name}</h2>
-        <button>Edit</button>
         <div>
-          <div>
-            Location: {location}
-          </div>
-          <div>
-            Email: {email}
-          </div>
-          <div>
-            Phone number: {phoneNumber}
-          </div>
-        </div>    
-      </div>
+          Location: {this.props.nameInfo.location}
+        </div>
+        <div>
+          Email: {this.props.nameInfo.email}
+        </div>
+        <div>
+          Phone number: {this.props.nameInfo.phoneNumber}
+        </div>
+      </div>    
+    </div>
     )
   }
-
 }
 
 export default NameSection;

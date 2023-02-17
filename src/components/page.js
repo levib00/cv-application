@@ -2,7 +2,7 @@ import React from 'react';
 import EditEntry from './edit-entry';
 import EditNameSection from './edit-personal-info';
 import ListItems from './list-entries';
-import NameSection from './name-section';
+import ShowNameSection from './show-personal-info';
 import SectionHeader from './section-title';
 
 class Page extends React.Component {
@@ -11,21 +11,7 @@ class Page extends React.Component {
     this.state = {
       eduArray: [], //TODO: sort edu by date -> make allowance for 'present' to be current date.
       expArray: [],
-      values: {
-          type: 'school',
-          role: 'student',
-          company: 'a school',
-          responsibilities: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat ultricies massa quis fermentum. Phasellus mattis nulla justo, sed vestibulum turpis accumsan eu. Suspendisse sit amet metus non lacus fringilla consectetur. Nulla pretium iaculis nisi, ac vestibulum dolor facilisis sed. Pellentesque nibh tellus,',
-          startDate: '2012',
-          endDate: '2011'
-      },
-      personalInfo: {
-        type : 'personal',
-        name : 'a Name',
-        location: 'here',
-        email: 'an@email.here',
-        phoneNumber: '(098) 765-4321'
-      },
+      personalInfo: [],
       clicked: false,
     }
     this.setArray = this.setArray.bind(this);
@@ -34,12 +20,21 @@ class Page extends React.Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.getIndex = this.getIndex.bind(this);
+    this.handleSubmitPersonalInfo = this.handleSubmitPersonalInfo.bind(this);
+    this.handleEditPersonalInfo = this.handleEditPersonalInfo.bind(this);
+  }
+
+  handleEditPersonalInfo() {
+    this.setState({personalInfo: <EditNameSection handleSubmitPersonalInfo={this.handleSubmitPersonalInfo} nameInfo={this.state.personalInfo}/>})
+  }
+
+  handleSubmitPersonalInfo(newObject) {
+    this.setState({personalInfo: newObject})
   }
 
   getIndex(e) {
     let test = e.target.parentNode
     let nodeList = Array.from(e.target.parentNode.parentNode.children)
-    console.log(e.target.parentNode.parentNode)
     let filteredNode = nodeList.filter(node => node === test)
     return nodeList.indexOf(filteredNode[0])
   }
@@ -101,7 +96,10 @@ class Page extends React.Component {
   render() {
     return (
       <div>
-        <NameSection nameInfo={this.state.personalInfo}/>
+        <div>
+          <ShowNameSection nameInfo={this.state.personalInfo}/>
+          <button onClick={this.handleEditPersonalInfo}>Edit</button>
+        </div>
         <div>
           <SectionHeader title='Experience' addItem={this.addItem} historyArray={this.state.expArray}/>
           <ListItems item={this.state.expArray} edit={this.handleEdit} remove={this.handleRemove}/>
