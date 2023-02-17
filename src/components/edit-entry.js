@@ -35,13 +35,24 @@ class EditEntry extends React.Component {
     return (
       <div>
         <div>
-          <label htmlFor='roleInput'>
-            <input type='text' id='roleInput' name='role' value={this.state.value} onChange={this.handleChange}/>
-          </label>
-            - 
-          <label htmlFor='companyInput'>
-            <input type='text' id='companyInput' name='company' value={this.state.value} onChange={this.handleChange}/>
-          </label>
+          <div>
+            <label htmlFor='roleInput'>
+              <input type='text' id='roleInput' name='role' value={this.state.value} onChange={this.handleChange}/>
+            </label>
+              -
+            <label htmlFor='companyInput'>
+              <input type='text' id='companyInput' name='company' value={this.state.value} onChange={this.handleChange}/>
+            </label>
+          </div>
+          <div>
+          <label htmlFor='startDateInput'>
+              <input type='date' id='startDateInput' name='startDate' value={this.state.value} onChange={this.handleChange}/>
+            </label>
+              -
+            <label htmlFor='endDateInput'>
+              <input type='date' id='endDateInput' name='endDate' value={this.state.value} onChange={this.handleChange}/>
+            </label>
+          </div>
         </div>
         <p>
           <label htmlFor='responsibilitiesInput'>

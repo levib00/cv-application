@@ -16,14 +16,14 @@ class Entry extends React.Component {
   }
 
   render() {
-    const { role, company, responsibilities } = this.props.info
+    const { role, company, responsibilities, startDate, endDate } = this.props.info
     console.log(this.props.info)
     return (
       <div key={this.props.listKey}>
         <button onClick={this.handleRemove}>Remove</button>
         <button onClick={this.handleEdit}>edit</button> {/*// TODO: give the current text thats in the entry to the edit boxes when this is pressed. */}
         <div>
-          {role} - {company}
+          <div>{role} - {company}</div> <div>{startDate}-{endDate}</div>
         </div>
         <p>{responsibilities}</p>
       </div>
