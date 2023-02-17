@@ -23,7 +23,7 @@ class Entry extends React.Component {
         <button onClick={this.handleRemove}>Remove</button>
         <button onClick={this.handleEdit}>edit</button> {/*// TODO: give the current text thats in the entry to the edit boxes when this is pressed. */}
         <div>
-          <div>{role} - {company}</div> <div>{startDate}-{endDate}</div>
+          <div>{role} - {company}</div> <div>{startDate} - {endDate}</div>
         </div>
         <p>{responsibilities}</p>
       </div>
