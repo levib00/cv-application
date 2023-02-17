@@ -3,6 +3,12 @@ import React from "react";
 class EditNameSection extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      location: '',
+      email: '',
+      phoneNumber: '',
+    }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)

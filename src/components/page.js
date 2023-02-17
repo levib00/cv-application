@@ -9,7 +9,7 @@ class Page extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      eduArray: [], //TODO: 1. make allowance for 'present' to be current date.
+      eduArray: [],
       expArray: [],
       personalInfo: [], //TODO 3. prevent opening edit for personalInfo and entry at the same time/entry add and entry edit at the same time.
       clicked: false,
@@ -40,15 +40,18 @@ class Page extends React.Component {
   }
 
   handleEdit(e, whichArray) {
-    if (whichArray === 'expArray') {
-      let array = this.state.expArray
-      array[this.getIndex(e)] = <EditEntry historyArray={'expArray'} setArray={this.setArray} key={'expEdit'}/>
-      this.setState({expArray: [...array]})
-    } else if (whichArray === 'eduArray'){
-      let array = this.state.eduArray
-      array[this.getIndex(e)] = <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
-      this.setState({eduArray: [...array]})
+    if (!this.state.clicked) {
+      if (whichArray === 'expArray') {
+        let array = this.state.expArray
+        array[this.getIndex(e)] = <EditEntry historyArray={'expArray'} setArray={this.setArray} key={'expEdit'}/>
+        this.setState({expArray: [...array]})
+      } else if (whichArray === 'eduArray'){
+        let array = this.state.eduArray
+        array[this.getIndex(e)] = <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
+        this.setState({eduArray: [...array]})
+      }
     }
+    this.setState({clicked: true})
   }
 
   handleRemove(e, whichArray) {
