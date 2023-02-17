@@ -45,7 +45,7 @@ class EditNameSection extends React.Component {
           <div>
             <label htmlFor='phoneNumberInput'>
               Phone number: 
-              <input type='text' name="phoneNumber" id='phoneNumberInput' value={phoneNumber} onChange={this.handleChange}/>
+              <input type='tel' name="phoneNumber" id='phoneNumberInput' value={phoneNumber} onChange={this.handleChange}/>
             </label>
           </div>
         </div> 
