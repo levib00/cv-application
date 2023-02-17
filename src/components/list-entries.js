@@ -5,7 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 class ListEntries extends React.Component {
   makeToListItems() {
     let placed = false
-    const item = this.props.item
+    let item = this.props.item
+    item = item.sort(function(a,b){
+      return new Date(a.endDate) - new Date(b.endDate)
+    })
     const list = item.map(listItem => {
     
     if (React.isValidElement(listItem) && placed) {
