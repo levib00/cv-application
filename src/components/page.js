@@ -9,9 +9,9 @@ class Page extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      eduArray: [], //TODO: sort edu by date -> make allowance for 'present' to be current date.
+      eduArray: [], //TODO: 1. make allowance for 'present' to be current date.
       expArray: [],
-      personalInfo: [],
+      personalInfo: [], //TODO 3. prevent opening edit for personalInfo and entry at the same time/entry add and entry edit at the same time.
       clicked: false,
     }
     this.setArray = this.setArray.bind(this);
@@ -61,18 +61,17 @@ class Page extends React.Component {
       array.splice(this.getIndex(e), 1)
       this.setState({eduArray: [...array]})
     }
-    
   }
 
-  removeEditComponent(historyArray, newObject) { // TODO: rename historyArray
-    if (historyArray === 'eduArray') {
+  removeEditComponent(whichArray, newObject) {
+    if (whichArray === 'eduArray') {
       const array = [...this.state.eduArray]; // make a separate copy of the array
       const index = array.findIndex(item => React.isValidElement(item))
       if (index !== -1) {
         array.splice(index, 1);
         return [...array, newObject];
       }
-    } else if (historyArray === 'expArray') {
+    } else if (whichArray === 'expArray') {
       const array = [...this.state.expArray]; // make a separate copy of the array
       const index = array.findIndex(item => React.isValidElement(item))
       if (index !== -1) {
