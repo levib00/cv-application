@@ -39,16 +39,29 @@ class Page extends React.Component {
     return nodeList.indexOf(filteredNode[0])
   }
 
-  handleEdit(e) {
-    let array = this.state.eduArray
-    array[this.getIndex(e)] = <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
-    this.setState({eduArray: [...array]}) //TODO: allow these to work with exp array too.
+  handleEdit(e, whichArray) {
+    if (whichArray === 'expArray') {
+      let array = this.state.expArray
+      array[this.getIndex(e)] = <EditEntry historyArray={'expArray'} setArray={this.setArray} key={'expEdit'}/>
+      this.setState({expArray: [...array]})
+    } else if (whichArray === 'eduArray'){
+      let array = this.state.eduArray
+      array[this.getIndex(e)] = <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
+      this.setState({eduArray: [...array]})
+    }
   }
 
-  handleRemove(e) {
-    let array = this.state.eduArray
-    array.splice(this.getIndex(e), 1)
-    this.setState({eduArray: [...array]})
+  handleRemove(e, whichArray) {
+    if(whichArray === 'expArray') {
+      let array = this.state.expArray
+      array.splice(this.getIndex(e), 1)
+      this.setState({expArray: [...array]})
+    } else if (whichArray === 'eduArray') {
+      let array = this.state.eduArray
+      array.splice(this.getIndex(e), 1)
+      this.setState({eduArray: [...array]})
+    }
+    
   }
 
   removeEditComponent(historyArray, newObject) { // TODO: rename historyArray
@@ -102,11 +115,11 @@ class Page extends React.Component {
         </div>
         <div>
           <SectionHeader title='Experience' addItem={this.addItem} historyArray={this.state.expArray}/>
-          <ListItems item={this.state.expArray} edit={this.handleEdit} remove={this.handleRemove}/>
+          <ListItems whichArray={'expArray'} item={this.state.expArray} edit={this.handleEdit} remove={this.handleRemove}/>
         </div>
         <div>
           <SectionHeader title='Education' addItem={this.addItem} historyArray={this.state.eduArray}/>
-          <ListItems item={this.state.eduArray} edit={this.handleEdit} remove={this.handleRemove}/>
+          <ListItems whichArray={'eduArray'} item={this.state.eduArray} edit={this.handleEdit} remove={this.handleRemove}/>
         </div>
       </div>
     )

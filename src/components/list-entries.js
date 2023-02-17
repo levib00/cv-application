@@ -15,7 +15,7 @@ class ListEntries extends React.Component {
       placed = true
       return listItem
     }
-    return <Entry key={uuidv4()} info={listItem} edit={this.props.edit} remove={this.props.remove}/>
+    return <Entry whichArray={this.props.whichArray} key={uuidv4()} info={listItem} edit={this.props.edit} remove={this.props.remove}/>
   })
     return list
   }
