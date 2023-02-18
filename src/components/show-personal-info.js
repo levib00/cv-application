@@ -4,7 +4,6 @@ import NameSection from "./name-section";
 class ShowNameSection extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
     this.showInfo = this.showInfo.bind(this)
   }
   

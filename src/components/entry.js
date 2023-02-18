@@ -25,11 +25,8 @@ class Entry extends React.Component {
     const dateString = year + '-' + ('0' + (month)).slice(-2) + '-' + ('0' + day).slice(-2);
 
     if (endDate === dateString) {
-      console.log('present')
       return 'present'
     } else {
-      console.log(`${dateString}`, '__', endDate)
-      //console.log(`${year}-${month}-${day}`, '__', endDate)
       return endDate
     }
   }
