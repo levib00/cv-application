@@ -11,8 +11,20 @@ class Page extends React.Component {
     this.state = {
       eduArray: [],
       expArray: [],
-      personalInfo: [], //TODO 3. prevent opening edit for personalInfo and entry at the same time/entry add and entry edit at the same time.
+      personalInfo: {
+        name: '',
+        location: '',
+        email: '', 
+        phoneNumber: '',
+      },
       clicked: false,
+      emptyObject: {
+        role: '',
+        company: '',
+        responsibilities: '',
+        startDate: '',
+        endDate: '',
+      }
     }
     this.setArray = this.setArray.bind(this);
     this.addItem = this.addItem.bind(this);
@@ -43,11 +55,12 @@ class Page extends React.Component {
     if (!this.state.clicked) {
       if (whichArray === 'expArray') {
         let array = this.state.expArray
-        array[this.getIndex(e)] = <EditEntry historyArray={'expArray'} setArray={this.setArray} key={'expEdit'}/>
+        console.log(this.state.expArray[this.getIndex(e)])
+        array[this.getIndex(e)] = <EditEntry entryInfo={this.state.expArray[this.getIndex(e)]} historyArray={'expArray'} setArray={this.setArray} key={'expEdit'}/>
         this.setState({expArray: [...array]})
       } else if (whichArray === 'eduArray'){
         let array = this.state.eduArray
-        array[this.getIndex(e)] = <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
+        array[this.getIndex(e)] = <EditEntry entryInfo={this.state.eduArray[this.getIndex[e]]} historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
         this.setState({eduArray: [...array]})
       }
     }
@@ -97,11 +110,11 @@ class Page extends React.Component {
     if (!this.state.clicked) {
       if (historyArray === this.state.eduArray) {
       this.setState({
-        eduArray: [...historyArray, <EditEntry historyArray={'eduArray'} setArray={this.setArray} key={'eduAdd'}/>]
+        eduArray: [...historyArray, <EditEntry entryInfo={this.state.emptyObject} historyArray={'eduArray'} setArray={this.setArray} key={'eduAdd'}/>]
       })
       } else {
         this.setState({
-          expArray: [...historyArray, <EditEntry historyArray={'expArray'} setArray={this.setArray} key={'expAdd'}/>]
+          expArray: [...historyArray, <EditEntry entryInfo={this.state.emptyObject} historyArray={'expArray'} setArray={this.setArray} key={'expAdd'}/>]
         })
       }
       this.setState({clicked: true})

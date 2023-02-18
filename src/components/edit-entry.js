@@ -4,12 +4,13 @@ class EditEntry extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      role: '',
-      company: '',
-      responsibilities: '',
-      startDate: '',
-      endDate:'',
+      role: this.props.entryInfo.role,
+      company: this.props.entryInfo.company,
+      responsibilities: this.props.entryInfo.responsibilities,
+      startDate: this.props.entryInfo.startDate,
+      endDate: this.props.entryInfo.endDate,
     }
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -37,26 +38,26 @@ class EditEntry extends React.Component {
         <div>
           <div>
             <label htmlFor='roleInput'>
-              <input type='text' id='roleInput' name='role' value={this.state.value} onChange={this.handleChange}/>
+              <input type='text' id='roleInput' name='role' value={this.state.role} onChange={this.handleChange}/>
             </label>
               -
             <label htmlFor='companyInput'>
-              <input type='text' id='companyInput' name='company' value={this.state.value} onChange={this.handleChange}/>
+              <input type='text' id='companyInput' name='company' value={this.state.company} onChange={this.handleChange}/>
             </label>
           </div>
           <div>
           <label htmlFor='startDateInput'>
-              <input type='date' id='startDateInput' name='startDate' value={this.state.value} onChange={this.handleChange}/>
+              <input type='date' id='startDateInput' name='startDate' value={this.state.startDate} onChange={this.handleChange}/>
             </label>
               -
             <label htmlFor='endDateInput'>
-              <input type='date' id='endDateInput' name='endDate' value={this.state.value} onChange={this.handleChange}/>
+              <input type='date' id='endDateInput' name='endDate' value={this.state.endDate} onChange={this.handleChange}/>
             </label>
           </div>
         </div>
         <p>
           <label htmlFor='responsibilitiesInput'>
-            <input type='text' name='responsibilities' id='responsibilitiesInput' value={this.state.value} onChange={this.handleChange}/>
+            <textarea type='text' name='responsibilities' id='responsibilitiesInput' value={this.state.responsibilities} onChange={this.handleChange}/>
           </label>
         </p>
         <input type='submit' value='submit' onClick={this.handleSubmit}/>

@@ -4,10 +4,10 @@ class EditNameSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      location: '',
-      email: '',
-      phoneNumber: '',
+      name: this.props.nameInfo.name,
+      location: this.props.nameInfo.location,
+      email: this.props.nameInfo.email,
+      phoneNumber: this.props.nameInfo.phoneNumber,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -31,7 +31,7 @@ class EditNameSection extends React.Component {
   }
 
   render() {
-    const { name, location, email, phoneNumber } = this.props.nameInfo
+    const { name, location, email, phoneNumber } = this.state
     return (
       <div>
         <h2><input type='text' name="name" value={name} onChange={this.handleChange}/></h2>
