@@ -1,0 +1,44 @@
+.inputLine {
+  display: flex;
+  justify-content: space-between;
+}
+.inputBoxes {
+  display: flex;
+  gap: 4px;
+  width: 300px;
+}
+label {
+  margin-top: 4px;
+}
+.textBox {
+  display: flex;
+  align-items: center;
+  width: 130px;
+  height: 18px;
+  font-size: 14px;
+}
+.btn {
+  display: inline-flex;
+  height: 25px;
+  width: min-content;
+  align-items: center;
+  padding: 10px;
+  margin-left: 12px;
+  background-color: black;
+  color: white;
+  border: 2px solid #666;
+  border-radius: 4px;
+}
+.textArea {
+  width: 350px;
+  height: 80px;
+  max-height: 180px;
+  resize: vertical;
+}
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 21px;
+  margin-bottom: -5px;
+}

@@ -1,0 +1,22 @@
+.section {
+  display: flex;
+}
+.btn {
+  display: inline-flex;
+  height: 25px;
+  width: min-content;
+  align-items: center;
+  padding: 10px;
+  align-self: center;
+  margin-left: 12px;
+  background-color: black;
+  color: white;
+  border: 2px solid #666;
+  border-radius: 4px;
+}
+.infoLine {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
