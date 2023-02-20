@@ -1,4 +1,5 @@
 import React from "react";
+import SectionCSS from '../styles/section.module.css'
 
 class SectionHeader extends React.Component {
   constructor(props) {
@@ -16,9 +17,9 @@ class SectionHeader extends React.Component {
   render() {
     const clicked = this.state.clicked
     return (
-      <div>
-        <h3>{this.props.title}</h3>
-        <button onClick={!clicked ? this.handleAdd : null}>Add +</button>
+      <div className={SectionCSS.section}>
+        <h2>{this.props.title}</h2>
+        <button className={SectionCSS.btn} onClick={!clicked ? this.handleAdd : null}>Add</button>
       </div>
     )
   }

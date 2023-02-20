@@ -1,4 +1,5 @@
 import React from "react";
+import EditCSS from '../styles/edit-form.module.css'
 
 class EditNameSection extends React.Component {
   constructor(props) {
@@ -34,28 +35,30 @@ class EditNameSection extends React.Component {
     const { name, location, email, phoneNumber } = this.state
     return (
       <div>
-        <h2><input type='text' name="name" value={name} onChange={this.handleChange}/></h2>
-        <div>
+        <h2><input required className={EditCSS.textBox} placeholder='Your name' type='text' name="name" value={name} onChange={this.handleChange}/></h2>
+        <div className={EditCSS.formContainer}>
           <div>
-            <label htmlFor="locationInput">
-              Location:
-              <input type='text' name="location" value={location} onChange={this.handleChange}/>
-            </label>
+            <div>
+              <label className={EditCSS.inputBoxes} htmlFor="locationInput">
+                Location:
+                <input required className={EditCSS.textBox} placeholder='City' type='text' name="location" value={location} onChange={this.handleChange}/>
+              </label>
+            </div>
+            <div>
+              <label className={EditCSS.inputBoxes} htmlFor='emailInput'>
+                Email:
+                <input required className={EditCSS.textBox} placeholder="Email"  type='email' name="email" id='emailInput' value={email} onChange={this.handleChange}/>
+              </label>
+            </div>
+            <div>
+              <label className={EditCSS.inputBoxes} htmlFor='phoneNumberInput'>
+                Phone number:
+                <input required className={EditCSS.textBox} placeholder="Phone number"  type='tel' name="phoneNumber" id='phoneNumberInput' value={phoneNumber} onChange={this.handleChange}/>
+              </label>
+            </div>
           </div>
-          <div>
-            <label htmlFor='emailInput'>
-              Email: 
-              <input type='email' name="email" id='emailInput' value={email} onChange={this.handleChange}/>
-            </label>
-          </div>
-          <div>
-            <label htmlFor='phoneNumberInput'>
-              Phone number: 
-              <input type='tel' name="phoneNumber" id='phoneNumberInput' value={phoneNumber} onChange={this.handleChange}/>
-            </label>
-          </div>
+          <button className={EditCSS.btn} type='submit' onClick={this.handleSubmit}>Submit</button>
         </div> 
-        <input type='submit' value='submit' onClick={this.handleSubmit}/>   
       </div>
     )
   }

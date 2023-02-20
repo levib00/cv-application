@@ -1,4 +1,5 @@
 import React from 'react';
+import EditCSS from '../styles/edit-form.module.css'
 
 class EditEntry extends React.Component {
   constructor(props) {
@@ -35,32 +36,32 @@ class EditEntry extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <div>
+        <div className={EditCSS.inputLine}>
+          <div className={EditCSS.inputBoxes}>
             <label htmlFor='roleInput'>
-              <input type='text' id='roleInput' name='role' value={this.state.role} onChange={this.handleChange}/>
+              <input required className={EditCSS.textBox} placeholder={this.props.historyArray === 'expArray' ? 'position' : 'Area of Study'} type='text' id='roleInput' name='role' value={this.state.role} onChange={this.handleChange}/>
             </label>
               -
             <label htmlFor='companyInput'>
-              <input type='text' id='companyInput' name='company' value={this.state.company} onChange={this.handleChange}/>
+              <input required className={EditCSS.textBox} placeholder={this.props.historyArray === 'expArray' ? 'company' : 'School'} type='text' id='companyInput' name='company' value={this.state.company} onChange={this.handleChange}/>
             </label>
           </div>
-          <div>
-          <label htmlFor='startDateInput'>
-              <input type='date' id='startDateInput' name='startDate' value={this.state.startDate} onChange={this.handleChange}/>
+          <div className={EditCSS.inputBoxes}>
+            <label htmlFor='startDateInput'>
+              <input required className={EditCSS.textBox} onFocus={(e) => (e.target.type = "date")} placeholder={'Start date'} type='text' id='startDateInput' name='startDate' value={this.state.startDate} onChange={this.handleChange}/>
             </label>
               -
             <label htmlFor='endDateInput'>
-              <input type='date' id='endDateInput' name='endDate' value={this.state.endDate} onChange={this.handleChange}/>
+              <input required className={EditCSS.textBox} onFocus={(e) => (e.target.type = "date")} placeholder={'Start date'} type='text' id='endDateInput' name='endDate' value={this.state.endDate} onChange={this.handleChange}/>
             </label>
           </div>
         </div>
         <p>
           <label htmlFor='responsibilitiesInput'>
-            <textarea type='text' name='responsibilities' id='responsibilitiesInput' value={this.state.responsibilities} onChange={this.handleChange}/>
+            <textarea className={EditCSS.textArea} placeholder='responsibilities or notable achievements.' type='text' name='responsibilities' id='responsibilitiesInput' value={this.state.responsibilities} onChange={this.handleChange}/>
           </label>
         </p>
-        <input type='submit' value='submit' onClick={this.handleSubmit}/>
+        <button className={EditCSS.btn} type='submit' onClick={this.handleSubmit}>Submit</button>
       </div>
     )
   }

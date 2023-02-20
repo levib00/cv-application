@@ -4,6 +4,7 @@ import EditNameSection from './edit-personal-info';
 import ListItems from './list-entries';
 import ShowNameSection from './show-personal-info';
 import SectionHeader from './section-title';
+import PageCSS from '../styles/page.module.css'
 
 class Page extends React.Component {
   constructor(props) {
@@ -123,10 +124,10 @@ class Page extends React.Component {
   
   render() {
     return (
-      <div>
-        <div>
+      <div className={PageCSS.page}>
+        <div className={PageCSS.section}>
           <ShowNameSection nameInfo={this.state.personalInfo}/>
-          <button onClick={this.handleEditPersonalInfo}>Edit</button>
+          <button className={PageCSS.btn} onClick={this.handleEditPersonalInfo}>Edit</button>
         </div>
         <div>
           <SectionHeader title='Experience' addItem={this.addItem} historyArray={this.state.expArray}/>
