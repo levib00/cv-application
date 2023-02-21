@@ -2,6 +2,7 @@ import React from 'react';
 import EditCSS from '../styles/edit-form.module.css'
 
 class EditEntry extends React.Component {
+  // This is the form that handles edits and added entries.
   constructor(props) {
     super(props)
     this.state = {

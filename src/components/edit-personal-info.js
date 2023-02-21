@@ -2,6 +2,7 @@ import React from "react";
 import EditCSS from '../styles/edit-form.module.css'
 
 class EditNameSection extends React.Component {
+  // This is the form that handles edits to personal info.
   constructor(props) {
     super(props);
     this.state = {

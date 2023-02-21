@@ -2,6 +2,7 @@ import React from 'react';
 import SectionCSS from '../styles/section.module.css'
 
 class Entry extends React.Component {
+  // This component is the element that shows under 'Experience' or 'Education'
   constructor(props) {
     super(props);
     this.handleEdit = this.handleEdit.bind(this);
@@ -18,6 +19,7 @@ class Entry extends React.Component {
   }
 
   checkIfPresent(endDate) {
+    // If the current date is input into the end date box the date is changed to 'Present'
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;

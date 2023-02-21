@@ -19,7 +19,7 @@ class Page extends React.Component {
         phoneNumber: '',
       },
       clicked: false,
-      emptyObject: {
+      emptyObject: { // these are the default values for new entries.
         role: '',
         company: '',
         responsibilities: '',
@@ -45,7 +45,8 @@ class Page extends React.Component {
     this.setState({personalInfo: newObject})
   }
 
-  getIndex(e) {
+  getIndex(e) { 
+    // used to get the index of an entry when a button in the entry is pressed.
     let test = e.target.parentNode
     let nodeList = Array.from(e.target.parentNode.parentNode.children)
     let filteredNode = nodeList.filter(node => node === test)
@@ -53,13 +54,13 @@ class Page extends React.Component {
   }
 
   handleEdit(e, whichArray) {
-    if (!this.state.clicked) {
+    //Changes an entry to a form to change the information.
+    if (!this.state.clicked) { // prevents more than one form from opening.
       if (whichArray === 'expArray') {
         let array = this.state.expArray
-        console.log(this.state.expArray[this.getIndex(e)])
         array[this.getIndex(e)] = <EditEntry entryInfo={this.state.expArray[this.getIndex(e)]} historyArray={'expArray'} setArray={this.setArray} key={'expEdit'}/>
         this.setState({expArray: [...array]})
-      } else if (whichArray === 'eduArray'){
+      } else if (whichArray === 'eduArray') {
         let array = this.state.eduArray
         array[this.getIndex(e)] = <EditEntry entryInfo={this.state.eduArray[this.getIndex[e]]} historyArray={'eduArray'} setArray={this.setArray} key={'eduEdit'}/>
         this.setState({eduArray: [...array]})
@@ -69,6 +70,7 @@ class Page extends React.Component {
   }
 
   handleRemove(e, whichArray) {
+    //removes an entry from the list.
     if(whichArray === 'expArray') {
       let array = this.state.expArray
       array.splice(this.getIndex(e), 1)
@@ -81,15 +83,16 @@ class Page extends React.Component {
   }
 
   removeEditComponent(whichArray, newObject) {
+    // removes forms from the arrays so only the entries show.
     if (whichArray === 'eduArray') {
-      const array = [...this.state.eduArray]; // make a separate copy of the array
+      const array = [...this.state.eduArray];
       const index = array.findIndex(item => React.isValidElement(item))
       if (index !== -1) {
         array.splice(index, 1);
         return [...array, newObject];
       }
     } else if (whichArray === 'expArray') {
-      const array = [...this.state.expArray]; // make a separate copy of the array
+      const array = [...this.state.expArray];
       const index = array.findIndex(item => React.isValidElement(item))
       if (index !== -1) {
         array.splice(index, 1);
@@ -99,6 +102,7 @@ class Page extends React.Component {
   }
 
   setArray(historyArray, newObject) {
+    // calls function that removes the forms.
     this.setState({clicked: false})
     if (historyArray === 'eduArray') {
       this.setState({eduArray: this.removeEditComponent(historyArray, newObject)})
@@ -108,11 +112,12 @@ class Page extends React.Component {
   }
   
   addItem(historyArray) {
+    // creates a new blank form when an add button is pressed.
     if (!this.state.clicked) {
       if (historyArray === this.state.eduArray) {
-      this.setState({
-        eduArray: [...historyArray, <EditEntry entryInfo={this.state.emptyObject} historyArray={'eduArray'} setArray={this.setArray} key={'eduAdd'}/>]
-      })
+        this.setState({
+          eduArray: [...historyArray, <EditEntry entryInfo={this.state.emptyObject} historyArray={'eduArray'} setArray={this.setArray} key={'eduAdd'}/>]
+        })
       } else {
         this.setState({
           expArray: [...historyArray, <EditEntry entryInfo={this.state.emptyObject} historyArray={'expArray'} setArray={this.setArray} key={'expAdd'}/>]

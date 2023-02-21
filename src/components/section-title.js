@@ -4,13 +4,14 @@ import SectionCSS from '../styles/section.module.css'
 class SectionHeader extends React.Component {
   constructor(props) {
     super(props)
-    this.handleAdd = this.handleAdd.bind(this)
     this.state = {
-      clicked: false
+      clicked: false // prevents more than one form being active.
     }
+    this.handleAdd = this.handleAdd.bind(this)
   }
   
   handleAdd() {
+    // Adds new blank form to entries list.
     this.props.addItem(this.props.historyArray);
   }
   
